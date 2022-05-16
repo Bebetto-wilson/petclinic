@@ -23,17 +23,17 @@ public class VeterinarianController {
 	VeterinarianService veterinarianService;
 	
 	@PostMapping("add/{id}")
-	public void addVet(@PathVariable Integer id, @RequestBody Veterinarian veterinarian) {
-		veterinarianService.save(id, veterinarian);
+	public Veterinarian addVet(@PathVariable Integer id, @RequestBody Veterinarian veterinarian) {
+		return veterinarianService.save(id, veterinarian);
 	}
 
 	@GetMapping("{id}")
-	public Veterinarian getUser(@PathVariable Integer id) {
+	public Veterinarian getVet(@PathVariable Integer id) {
 		return veterinarianService.findById(id);
 	}
 
-	@GetMapping("allusers")
-	public List<Veterinarian> retrieveAllUsers() {
+	@GetMapping("allVets")
+	public List<Veterinarian> retrieveAllVets() {
 		return veterinarianService.findAll();
 	}
 

@@ -32,8 +32,8 @@ public class Appointment {
 	@JoinColumn(name = "veterinarian_id")
 	private Veterinarian veterinarian;
 	
-	@Column(name = "description_id")
-	private String descriptionId;
+	@Column(name = "description")
+	private String description;
 	
 	@Column(name = "is_approved")
 	private boolean isApproved;
@@ -54,12 +54,12 @@ public class Appointment {
 		this.appointmentDate = appointmentDate;
 	}
 
-	public String getDescriptionId() {
-		return descriptionId;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptionId(String descriptionId) {
-		this.descriptionId = descriptionId;
+	public void setDescription(String descriptionId) {
+		this.description = descriptionId;
 	}
 
 	public boolean isApproved() {

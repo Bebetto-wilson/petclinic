@@ -24,30 +24,10 @@ public class UserService {
 	@Autowired
 	UsersRepository  userRepository ;
 	
-//	public Users save(Users user ) {
-//		Optional<Roles> userRole = roleRepository.findById(user.getRoleId());
-//		if (userRole.isEmpty()) {
-//		throw new IllegalArgumentException("Invalid User");
-//	} else {
-//	}
-//
-//		return  userRepository.save(user);
-//
-//	}
- 
-	public Users save(/*Integer id,*/ Users user ) {
-		Users newUser = null;
-		//Users loggedUser = userRepository.getById(id);
-		//if (null == loggedUser) throw new NullPointerException("Invalid user");
-		//int roleId = loggedUser.getRoleId();
-		//if (roleId == 1) {
-		return newUser = userRepository.save(user);
-			
-		//}else
-			//throw new IllegalArgumentException("Unauthorized user");
-
-	}
 	
+	public Users save(Users user ) {
+		return userRepository.save(user);
+	}
 
 	public Users findById( Integer id ) {
 		Optional<Users> user = userRepository.findById( id);
@@ -57,7 +37,7 @@ public class UserService {
 		}
 		return null;
 	}
-	
+		
 	public List<Users> findAll () {
 		return userRepository.findAll();
 	}
@@ -75,7 +55,7 @@ public class UserService {
 		return isDeleted;
 	}
 	
-
+	
 	public Boolean updateUser(Users user) {
 		Optional<Users> findUser = userRepository.findById(user.getId());
 		
@@ -86,9 +66,39 @@ public class UserService {
 		}
 		else
 			isUpdated = false;
-			
+
 		return isUpdated;
 	}
+
+	public List<Users> getUsersByRole (int roleId) {
+		Roles role = new Roles();
+		role.setId(roleId);
+		List<Users> users  =  userRepository.findByRole(role);
+		return users;
+	}
+	
+
+//	public Boolean updateUser(Users user) {
+//		Optional<Users> findUser = userRepository.findById(user.getId());
+//		
+//		Boolean isUpdated = false;
+//		if(findUser.isPresent()) {
+//			userRepository.save(user);
+//			isUpdated = true;
+//		}
+//		else
+//			isUpdated = false;
+//			
+//		return isUpdated;
+//	}
+
+
+	//public List<Users> getUsersByRole(int roleId) {
+	//	Users users = userRepository.findByRoleId(roleId);
+	//	return (List<Users>) users;
+		// TODO Auto-generated method stub
+		//return null;
+	//}
 
 }
 

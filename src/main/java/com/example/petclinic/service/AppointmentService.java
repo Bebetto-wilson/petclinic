@@ -1,5 +1,6 @@
 package com.example.petclinic.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +20,8 @@ public class AppointmentService {
 		
 		
 		public Appointment save(  Appointment appointment ) {
-			Appointment newAppointment = null;
-			 newAppointment = appointmentRepository.save(appointment);
+			appointment.setAppointmentDate(new Date());
+			Appointment newAppointment = appointmentRepository.save(appointment);
 			 return newAppointment;
 		}
 		
@@ -53,6 +54,7 @@ public class AppointmentService {
 			Optional<Appointment> findUser = appointmentRepository.findById(appointment.getId());
 			Boolean isUpdated = false;
 			if(findUser.isPresent()) {
+				appointment.setAppointmentDate(new Date());
 				appointmentRepository.save(appointment);
 				isUpdated = true;
 			}
@@ -60,6 +62,14 @@ public class AppointmentService {
 				isUpdated = false;
 				
 			return isUpdated;
+		}
+
+		public List<Appointment> findByVetId(Integer id) {
+			List<Appointment> appointmentList = appointmentRepository.findByVeterinarianId(id);
+			if (null == appointmentList) {
+				throw new NullPointerException("Invalid veterinarian Id");
+			}
+			return appointmentList;
 		}
 
 		

@@ -23,6 +23,18 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService  appointmentService ; 
 	
+	
+//	public ResponseEntity<?> addAppointment(@RequestBody Appointment appointment) {
+//		//appointmentService.save(appointment);
+//		try {
+//			Appointment appointment2 = appointmentService.save(appointment);
+//			if (null == appointment2) return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+//			return ResponseEntity.ok(appointment2);
+//		} catch(Exception e) {
+//			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+	
 	@PostMapping("add")
 	public ResponseEntity<?> addAppointment(@RequestBody Appointment appointment) {
 		//appointmentService.save(appointment);
@@ -40,6 +52,12 @@ public class AppointmentController {
 		return appointmentService.findById(id);
 	}
 
+	@GetMapping("vetId/{id}")
+	public List<Appointment> getAppointmentByVetId(@PathVariable Integer id) {
+		return appointmentService.findByVetId(id);
+	}
+
+	
 	@GetMapping("allusers")
 	public List<Appointment> retrieveAllAppointment() {
 		return appointmentService.findAll();

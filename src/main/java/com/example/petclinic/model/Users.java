@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -25,12 +27,12 @@ public class Users {
 	private String email;
 	private String phone;
 	
-	
-	@Column(name = "role_id")
-	private int roleId;
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	Roles role;
 	private String password;
 	
-	@Column(name = "is_delete")
+	@Column(name = "is_deleted")
 	private boolean isDeleted;
 
 	public Users() {
@@ -86,12 +88,11 @@ public class Users {
 		this.phone = phone;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public Roles getRole() {
+		return role;
 	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(Roles role) {
+		this.role = role;
 	}
 
 	public String getPassword() {

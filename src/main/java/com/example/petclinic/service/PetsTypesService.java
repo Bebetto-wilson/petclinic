@@ -17,10 +17,10 @@ public class PetsTypesService {
 		PetsTypesRepository petsTypesRepository ;
 		
 		
-		public void save(  PetsTypes user ) {
-			petsTypesRepository.save(user);
-		}
-		
+//		public void save(  PetsTypes user ) {
+//			petsTypesRepository.save(user);
+//		}
+//		
 		public PetsTypes findById( Integer id ) {
 			return petsTypesRepository.findById( id).get();
 		}

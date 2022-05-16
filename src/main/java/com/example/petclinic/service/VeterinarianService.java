@@ -19,13 +19,13 @@ public class VeterinarianService {
 	
 	@Autowired
 	UsersRepository usersRepository;
-	public void save(Integer id, Veterinarian veterinarian ) {
+	public Veterinarian save(Integer id, Veterinarian veterinarian ) {
 		Users loggedUser = usersRepository.getById(id);
-		int roleId = loggedUser.getRoleId();
+		int roleId = loggedUser.getRole().getId();
 		if (roleId != 1) {
 			throw new IllegalArgumentException("Invalid admin");
 		}
-		veterinarianRepository.save(veterinarian);
+		return veterinarianRepository.save(veterinarian);
 	}
 	
 	public Veterinarian findById( Integer id ) {
@@ -38,7 +38,7 @@ public class VeterinarianService {
 	
 	public void deleteById (Integer id, Integer userId) {
 		Users loggedUser = usersRepository.getById(id);
-		int roleId = loggedUser.getRoleId();
+		int roleId = loggedUser.getRole().getId();
 		if (roleId != 1) {
 			throw new IllegalArgumentException("Invalid admin");
 		}
